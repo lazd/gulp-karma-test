@@ -1,0 +1,18 @@
+{
+  "name": "gulp-karma-test",
+  "version": "0.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "event-stream": "~3.0.20",
+    "gulp": "git+ssh://git@github.com:wearefractal/gulp.git"
+  }
+}
