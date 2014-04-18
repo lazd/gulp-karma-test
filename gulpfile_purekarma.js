@@ -6,23 +6,23 @@ var path = require('path');
 // Run tests once
 gulp.task('test', function(done) {
   server.start({
-    configFile: path.resolve('karma.conf.js'),
+    configFile: path.join(__dirname, 'karma.conf.js'),
     singleRun: true
   }, function(exitCode) {
     console.log('Karma run has exited with ' + exitCode);
     done(exitCode);
-    // process.exit(exitCode); // This should NOT be required
+    process.exit(exitCode);
   });
 });
 
 gulp.task('watch', function(done) {
   server.start({
     autoWatch: true,
-    configFile: path.resolve('karma.conf.js')
+    configFile: path.join(__dirname, 'karma.conf.js')
   }, function(exitCode) {
     console.log('Karma server has exited with ' + exitCode);
     done(exitCode);
-    // process.exit(exitCode); // This should NOT be required
+    process.exit(exitCode);
   });
 });
 
