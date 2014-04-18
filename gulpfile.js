@@ -14,12 +14,21 @@ gulp.task('test', function() {
   });
 });
 
-gulp.task('default', function() {
+gulp.task('gulp-watch', function() {
   // Start a server, then, once it's ready, run tests
   karma.start().then(karma.run);
 
-  // Watch for changes and run accordingly
+  // Watch for changes with gulp and run tests accordingly
   gulp.watch(['client/scripts/todo/*.js', 'test/client/*.js'], function() {
     karma.run();
   });
 });
+
+gulp.task('karma-watch', function() {
+  // Start a karma server, run tests, then watch with karma
+  return karma.start({
+    autoWatch: true
+  });
+});
+
+gulp.task('default', ['test']);

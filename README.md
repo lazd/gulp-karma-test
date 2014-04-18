@@ -9,13 +9,19 @@ Install deps:
 npm install
 ```
 
-Start a Karma server, launch Chrome and Firefox, run tests once, then watch for changes with gulp's watcher:
-
+Run tests once, then exit:
 ```shell
 gulp
 ```
 
-Run tests once, then exit:
+Start a Karma server, launch Chrome and Firefox, run tests once, then watch for changes with gulp's watcher:
+
 ```shell
-gulp test
+gulp gulp-watch
+```
+
+Start a Karma server, launch Chrome and Firefox, run tests once, then watch for changes with Karma's watcher:
+
+```shell
+gulp karma-watch
 ```
