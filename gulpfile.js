@@ -1,27 +1,25 @@
 var gulp = require('gulp');
-var karma = require('../gulp-karma/index.js');
 
-var includeOrder = [
-  'client/scripts/todo/todo.js',
-  'client/scripts/todo/todo.polyfills.js',
-  'client/scripts/todo/todo.util.js',
-  'client/scripts/todo/todo.App.js'
-];
+// Create a gulp+karma helper with a set of default options
+// In the case, the options all come from the config file
+var karma = require('gulp-karma')({
+  configFile: 'karma.conf.js'
+});
 
-var testIncludeOrder = includeOrder.concat(['test/client/*.js']);
-
+// Run tests once, for CI
 gulp.task('test', function() {
-  return gulp.src(testIncludeOrder)
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }));
+  return karma.once({
+    // CI-specific config here
+    // reporters: ['coverage']
+  });
 });
 
 gulp.task('default', function() {
-  return gulp.src(testIncludeOrder)
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'watch'
-    }));
+  // Start a server, then, once it's ready, run tests
+  karma.start().then(karma.run);
+
+  // Watch for changes and run accordingly
+  gulp.watch(['client/scripts/todo/*.js', 'test/client/*.js'], function() {
+    karma.run();
+  });
 });
